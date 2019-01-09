@@ -1,15 +1,17 @@
 import React from 'react'
 
-const ViewPost = props =>
-  <div>
-    {
-      props.post
-      ? <>
-        <div>{props.post.id}</div>
-        <div>{props.post.content}</div>
-      </>
-      : null
-    }
-  </div>
+import { Redirect } from 'react-router-dom'
+
+const ViewPost = props => {
+  if (!props.post) return <Redirect to='/' />
+
+  return (
+    <div>
+
+      <div>{props.post.id}</div>
+      <div>{props.post.content}</div>
+    </div>
+  )
+}
 
 export default ViewPost

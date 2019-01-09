@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { withRouter, Link } from 'react-router-dom'
+
 import loremIpsum from 'lorem-ipsum'
 
 class AddPost extends Component {
@@ -17,10 +19,11 @@ class AddPost extends Component {
     this.setState({
       post: loremIpsum({count:5, units:'paragraphs'})
     })
+
+    this.props.history.push('/')
   }
 
   handleChange = (event) => {
-    console.log(event.target.value)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -29,6 +32,7 @@ class AddPost extends Component {
   render(){
     return (
       <div>
+        <Link to='/'>Back</Link>
         <form onSubmit={this.handleSubmit}>
           <textarea name="post" cols="80" rows="15" onChange={this.handleChange} value={ this.state.post }>
             
@@ -42,4 +46,4 @@ class AddPost extends Component {
   }
 }
 
-export default AddPost
+export default withRouter(AddPost)
